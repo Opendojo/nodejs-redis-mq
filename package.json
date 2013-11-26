@@ -9,7 +9,8 @@
     "redis": "~0.9.1",
     "expect.js": "~0.2.0",
     "requirejs": "~2.1.9",
-    "amdefine": "~0.1.0"
+    "amdefine": "~0.1.0",
+    "coffee-script": "~1.6.3"
   },
   "scripts": {
     "test": "mocha"
@@ -19,7 +20,7 @@
     "url": "git://github.com/Opendojo/nodejs-redis-mq.git"
   },
   "author": "Sébastien Barbieri <sebastien.barbieri@gmail.com>",
-  "license": "BSD-2-Clause",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Opendojo/nodejs-redis-mq/issues"
   },
