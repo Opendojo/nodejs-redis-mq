@@ -19,8 +19,29 @@ build = (callback) ->
   coffeeTest.on 'exit', (code) ->
     callback?() if code is 0
 
-task 'build', 'Build lib/ from src/', ->
+clean = (callback)->
+  CleaningTest = spawn 'find', ['test','-type','d','-depth','1','-exec','rm','-rf','{}','\;']
+  CleaningTest.stderr.on 'data', (data) ->
+    process.stderr.write data.toString()
+  CleaningTest.stdout.on 'data', (data) ->
+    process.stdout.write data.toString()
+  CleaningTest.on 'exit', (code) ->
+    callback?() if code is 0
+  CleaningCode = spawn 'find', ['lib','-type','d','-depth','1','-exec','rm','-rf','{}','\;']
+  CleaningCode.stderr.on 'data', (data) ->
+    process.stderr.write data.toString()
+  CleaningCode.stdout.on 'data', (data) ->
+    process.stdout.write data.toString()
+  CleaningCode.on 'exit', (code) ->
+    callback?() if code is 0
+
+task 'clean', 'Clean test', ->
+  clean()
+
+task 'build', 'Build lib/ from libsrc/ and test/ form testsrc/', ->
+  clean()
   build()
 
-task 'sbuild', 'Build lib/ from src/', ->
+task 'sbuild', 'Build lib/ from libsrc/ and test/ form testsrc/', ->
+  clean()
   build()

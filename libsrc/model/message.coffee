@@ -1,8 +1,11 @@
 class Message
+  @id=0
+
   constructor:()->
-    @id = 1
+    # get next available id
+    @internalId = Message.id++
   
   getId:()->
-    @id
+    @internalId
 
 module.exports = Message

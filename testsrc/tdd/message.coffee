@@ -6,5 +6,6 @@ suite 'Message', ()->
     test 'message should have an id', ()->
       message = new Message()
       expect(message.getId).to.not.throwException()
-      expect(message.id).to.be.a('number')
-      expect(message.id).to.eql(parseInt(message.id))
+      messageId = message.getId()
+      expect(messageId).to.be.a('number')
+      expect(messageId).to.eql(parseInt(message.getId()))
