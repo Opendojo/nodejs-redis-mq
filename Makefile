@@ -11,6 +11,9 @@ test-unit:
 test-bdd:
 	@./node_modules/.bin/mocha --ui bdd --reporter $(REPORTER) --growl test/bdd/*
 
+watch-test-unit:
+	@./node_modules/.bin/mocha -w --ui tdd --reporter $(REPORTER) --growl test/tdd/*
+
 test-coffee: test-coffee-unit test-coffee-bdd
 
 test-coffee-unit:
