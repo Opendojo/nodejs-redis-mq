@@ -1,5 +1,5 @@
 expect = require('expect.js')
-Message = require('../lib/model/message')
+Message = require('../../lib/model/message')
 
 suite 'Message', ()->
   suite 'constructor', ()->

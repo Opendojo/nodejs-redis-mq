@@ -1,5 +1,5 @@
 expect = require('expect.js')
-Message = require('../lib/model/message')
+Message = require('../../lib/model/message')
 
 describe "Main test", () ->
   describe "Messages", () ->
