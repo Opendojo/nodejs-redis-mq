@@ -9,3 +9,9 @@ suite 'Message', ()->
       messageId = message.getId()
       expect(messageId).to.be.a('number')
       expect(messageId).to.eql(parseInt(message.getId()))
+    test 'id of several message should be consecutive', () ->
+      message1 = new Message()
+      message1Id = message1.getId()
+      message2 = new Message()
+      message2Id = message2.getId()
+      expect(message2Id).to.be.above(message1Id)

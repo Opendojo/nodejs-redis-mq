@@ -7,13 +7,22 @@ Message = require('../../lib/model/message');
 
 suite('Message', function() {
   return suite('constructor', function() {
-    return test('message should have an id', function() {
+    test('message should have an id', function() {
       var message, messageId;
       message = new Message();
       expect(message.getId).to.not.throwException();
       messageId = message.getId();
       expect(messageId).to.be.a('number');
       return expect(messageId).to.eql(parseInt(message.getId()));
+    });
+    return test('id of several message should be consecutive', function() {
+      var message1, message1Id, message2, message2Id;
+      message1 = new Message();
+      message1Id = message1.getId();
+      message2 = new Message();
+      message2Id = message2.getId();
+      expect(message1Id).not.to.eql(message2Id);
+      return expect(message2Id).to.be.above(message1Id);
     });
   });
 });
