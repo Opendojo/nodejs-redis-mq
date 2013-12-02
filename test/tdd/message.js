@@ -15,14 +15,60 @@ suite('Message', function() {
       expect(messageId).to.be.a('number');
       return expect(messageId).to.eql(parseInt(message.getId()));
     });
-    return test('id of several message should be consecutive', function() {
+    test('id of several message should be consecutive', function() {
       var message1, message1Id, message2, message2Id;
       message1 = new Message();
       message1Id = message1.getId();
       message2 = new Message();
       message2Id = message2.getId();
-      expect(message1Id).not.to.eql(message2Id);
       return expect(message2Id).to.be.above(message1Id);
+    });
+    test('message should have a type', function() {
+      var message, messageType;
+      message = new Message();
+      messageType = message.getType();
+      return expect(messageType).to.be.a('string');
+    });
+    test('message of type event should exists', function() {
+      var message, messageType;
+      message = new Message();
+      message.setType('event');
+      messageType = message.getType();
+      return expect(messageType).to.eql('event');
+    });
+    test('message should have a setable command section', function() {
+      var message, messageCmd;
+      message = new Message();
+      messageCmd = message.getCommand();
+      expect(messageCmd).to.be.a('string');
+      message.setCommand('command-test');
+      messageCmd = message.getCommand();
+      return expect(messageCmd).to.eql('command-test');
+    });
+    test('message should have a setable document section', function() {
+      var message, messageDocument, object;
+      message = new Message();
+      messageDocument = message.getDocument();
+      expect(messageDocument).to.be.an('object');
+      object = {
+        filepath: '/test/path',
+        filename: 'somefile.xml'
+      };
+      message.setDocument(object);
+      messageDocument = message.getDocument();
+      return expect(messageDocument).to.eql(object);
+    });
+    test('message document MUST be an object', function() {
+      var message;
+      message = new Message();
+      expect(message.setDocument).to.throwException('/message document must be an object/');
+      return message.setDocument("wrong type");
+    });
+    return test('message should have a timestamp', function() {
+      var message, messageTimestamp;
+      message = new Message();
+      messageTimestamp = message.getTimestamp();
+      return expect(messageTimestamp instanceof Date).to.be(true);
     });
   });
 });
